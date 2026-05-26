@@ -1,0 +1,113 @@
+{
+    "designSystem": {
+      "framework": "Tailwind CSS",
+      "style": {
+        "theme": "Clean, minimalista, profissional",
+        "fontFamily": "Sans-serif (ex: Inter, Helvetica, sans)",
+        "primaryColor": "#4F46E5",
+        "secondaryColor": "#A78BFA",
+        "backgroundColor": "#FFFFFF",
+        "textColor": "#1E293B",
+        "mutedTextColor": "#64748B",
+        "borderRadius": "0.5rem",
+        "shadow": "soft-md",
+        "button": {
+          "default": {
+            "padding": "px-6 py-2",
+            "rounded": "rounded-md",
+            "bg": "bg-primary hover:bg-primary-dark",
+            "text": "text-white font-medium"
+          },
+          "ghost": {
+            "bg": "bg-transparent",
+            "text": "text-primary hover:text-primary-dark"
+          }
+        }
+      },
+      "layout": {
+        "header": {
+          "position": "sticky top-0",
+          "background": "bg-white shadow-sm",
+          "navItems": ["Home", "About", "Features", "Pricing", "Support"],
+          "authButtons": ["Sign In", "Sign Up"],
+          "logo": {
+            "position": "left",
+            "size": "medium"
+          }
+        },
+        "heroSection": {
+          "alignment": "centered",
+          "titleSize": "text-4xl font-bold",
+          "subtitleSize": "text-lg text-muted",
+          "cta": {
+            "label": "Explore Features",
+            "style": "primary"
+          },
+          "image": {
+            "position": "below-text",
+            "style": "rounded shadow"
+          }
+        },
+        "dashboardLayout": {
+          "type": "sidebar + main content",
+          "sidebar": {
+            "width": "min-w-[240px]",
+            "background": "bg-gray-50",
+            "navGroups": [
+              "Dashboard",
+              "Transactions",
+              "Invoices",
+              "Reports",
+              "Settings"
+            ],
+            "icons": "simple, stroke 1.5"
+          },
+          "mainContent": {
+            "padding": "p-6",
+            "background": "bg-white",
+            "tableStyle": {
+              "header": "bg-gray-100 text-sm text-gray-700",
+              "rows": "hover:bg-gray-50",
+              "font": "text-sm"
+            },
+            "filters": "rounded, border, inline-flex with badges"
+          }
+        }
+      },
+      "components": {
+        "card": {
+          "bg": "bg-white",
+          "rounded": "rounded-lg",
+          "shadow": "shadow-sm",
+          "padding": "p-4",
+          "hoverEffect": "hover:shadow-md"
+        },
+        "table": {
+          "border": "border-collapse",
+          "headers": "uppercase tracking-wide text-xs text-gray-500 bg-gray-100",
+          "rows": "text-sm text-gray-700"
+        },
+        "form": {
+          "input": {
+            "padding": "px-4 py-2",
+            "rounded": "rounded-md",
+            "border": "border border-gray-300",
+            "focus": "focus:ring-primary focus:border-primary"
+          },
+          "label": "text-sm font-medium text-gray-700",
+          "errorText": "text-red-500 text-xs mt-1"
+        }
+      },
+      "animations": {
+        "buttons": "transition ease-in-out duration-150",
+        "hover": "hover:scale-105",
+        "nav": "fade-in-down"
+      },
+      "responsive": {
+        "breakpoints": ["sm", "md", "lg", "xl"],
+        "navCollapse": "hamburger menu on mobile",
+        "contentStack": "column on sm, row on md+"
+      }
+    }
+  }
+  
