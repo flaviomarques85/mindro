@@ -1,37 +1,36 @@
-# Etapa 1: build
+# Stage 1: build
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Instala certificados SSL e atualiza trust store
-RUN apk add --no-cache ca-certificates && update-ca-certificates  
-# Copiar arquivos de dependência separadamente para aproveitar cache de camadas
+RUN apk add --no-cache ca-certificates && update-ca-certificates
+
 COPY package*.json ./
-RUN npm install
+RUN npm ci --ignore-scripts
 
-# Copiar schema e gerar Prisma Client
 COPY database/prisma ./database/prisma/
-COPY .env ./
-RUN npx prisma generate --schema=database/prisma/schema.prisma
+# Prisma generate requires a DATABASE_URL at build time but the value is
+# only used by the generator, not embedded in the output binary.
+RUN DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder" \
+    npx prisma generate --schema=database/prisma/schema.prisma
 
-# Copiar todo código
 COPY . .
-
-# Build da aplicação
 RUN npm run build
 
-# Etapa 2: produção
+# Stage 2: production
 FROM node:20-alpine
 WORKDIR /app
 
-# Instala certificados SSL e atualiza trust store
 RUN apk add --no-cache ca-certificates && update-ca-certificates
-# Copiar apenas o necessário
+
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/database/prisma ./database/prisma
-COPY --from=builder /app/.env ./
 
 ENV NODE_ENV=production
 EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+  CMD wget -qO- http://localhost:3000/health || exit 1
+
 CMD ["node", "dist/main"]
