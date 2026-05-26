@@ -1,0 +1,27 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Dependências
+node_modules/
+
+# Builds e artefatos
+build/
+dist/
+coverage/
+.expo/
+.expo-shared/
+ios/build/
+android/build/
+android/.gradle/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Ambiente
+.env
+.env.local
+.env.*.local

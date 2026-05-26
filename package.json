@@ -1,0 +1,19 @@
+{
+  "name": "mindro-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "admin_console_mindro_learning",
+    "api_mindro_learning/api",
+    "app_mindro_learning"
+  ],
+  "scripts": {
+    "admin:start": "npm --workspace admin_console_mindro_learning start",
+    "admin:build": "npm --workspace admin_console_mindro_learning run build",
+    "api:start:dev": "npm --workspace api_mindro_learning/api run start:dev",
+    "api:build": "npm --workspace api_mindro_learning/api run build",
+    "app:start": "npm --workspace app_mindro_learning start",
+    "app:android": "npm --workspace app_mindro_learning run android",
+    "app:ios": "npm --workspace app_mindro_learning run ios"
+  }
+}
